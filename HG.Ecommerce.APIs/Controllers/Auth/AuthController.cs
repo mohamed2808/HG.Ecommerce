@@ -2,12 +2,6 @@
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.UserDtos;
 using HG.Ecommerce.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HG.Ecommerce.APIs.Controllers.Auth
 {
     public class AuthController : BaseAPIController
