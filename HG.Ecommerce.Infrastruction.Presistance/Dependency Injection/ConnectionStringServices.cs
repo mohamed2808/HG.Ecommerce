@@ -1,4 +1,6 @@
-﻿using HG.Ecommerce.Infrastruction.Presistance.Data.DbContextFile;
+﻿using HG.Ecommerce.Core.Contracts;
+using HG.Ecommerce.Infrastruction.Presistance.Data.DbContextFile;
+using HG.Ecommerce.Infrastruction.Presistance.Data.Presistance.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,7 @@ namespace HG.Ecommerce.Infrastruction.Presistance.Dependency_Injection
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<EcommerceDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }
