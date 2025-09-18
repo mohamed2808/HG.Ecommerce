@@ -10,7 +10,6 @@
     <Folder Include="Data\Migrations\" />
     <Folder Include="Data\Presistance\Specifications\" />
     <Folder Include="Data\Presistance\UnitOfWork\" />
-    <Folder Include="Data\Presistance\Generic Repository\" />
   </ItemGroup>
 
   <ItemGroup>
