@@ -16,5 +16,7 @@ namespace HG.Ecommerce.Infrastruction.Presistance.Data.DbContextFile
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
     }
 }

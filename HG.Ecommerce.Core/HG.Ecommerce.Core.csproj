@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HG.Ecommerce.Application.Abstraction\HG.Ecommerce.Application.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>

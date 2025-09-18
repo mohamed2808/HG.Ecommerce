@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HG.Ecommerce.Application.Abstraction\HG.Ecommerce.Application.Abstraction.csproj" />
+    <ProjectReference Include="..\HG.Ecommerce.Core\HG.Ecommerce.Core.csproj" />
   </ItemGroup>
 
 </Project>
