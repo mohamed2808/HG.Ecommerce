@@ -1,4 +1,5 @@
 ﻿using HG.Ecommerce.Application.Abstraction.Contracts;
+using HG.Ecommerce.Application.Abstraction.Exceptions;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.CategoryDtos;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.ProductDtos;
 using HG.Ecommerce.Core.Contracts;
@@ -27,7 +28,7 @@ namespace HG.Ecommerce.Application.Services
                 .GetByIdWithSpecAsync(id, specs, false);
             if (product == null)
             {
-                throw new KeyNotFoundException($"Product with ID {id} not found.");
+                throw new NotFoundException($"Product with ID {id} not found.");
             }
             var productToReturn = product.Adapt<ProductToReturnDto>();
             return productToReturn;
@@ -42,7 +43,7 @@ namespace HG.Ecommerce.Application.Services
         public Task<int> CreateProductAsync(CreateProductDto productDto)
         {
             if (productDto == null)
-                throw new ArgumentNullException(nameof(productDto));
+                throw new BadRequestException(nameof(productDto));
             var product = productDto.Adapt<Product>();
             _unitOfWork.GetRepository<Product, int>().AddAsync(product);
             return _unitOfWork.CompleteAsync();
@@ -51,7 +52,7 @@ namespace HG.Ecommerce.Application.Services
         public Task UpdateProductAsynce(UpdateProductDto productDto)
         {
             if (productDto == null)
-                throw new ArgumentNullException(nameof(productDto));
+                throw new BadRequestException(nameof(productDto));
             var product = productDto.Adapt<Product>();
             _unitOfWork.GetRepository<Product, int>().UpdateAsync(product);
             return _unitOfWork.CompleteAsync();
@@ -60,7 +61,7 @@ namespace HG.Ecommerce.Application.Services
         public Task DeleteProductAsync(int id)
         {
             if (id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than zero.");
+                throw new BadRequestException("ID must be greater than zero.");
             _unitOfWork.GetRepository<Product, int>().DeleteAsync(id);
             return _unitOfWork.CompleteAsync();
         }

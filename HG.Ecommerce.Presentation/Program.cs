@@ -1,4 +1,5 @@
 using HG.Ecommerce.Infrastruction.Presistance.Dependency_Injection;
+using HG.Ecommerce.Presentation.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,5 +19,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 app.Run();
