@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HG.Ecommerce.Application.Abstraction\HG.Ecommerce.Application.Abstraction.csproj" />
+    <ProjectReference Include="..\HG.Ecommerce.Infrastruction.Presistance\HG.Ecommerce.Infrastruction.Presistance.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -18,13 +18,13 @@ namespace HG.Ecommerce.Infrastruction.Presistance.Data.Presistance.Generic_Repos
             _dbSet = context.Set<TEntity>();
         }
 
-        public async Task<List<TEntity>> GetAllWithSpecAsync(ISpecifications<TEntity, TKey> spec)
+        public async Task<List<TEntity>> GetAllWithSpecAsync(ISpecifications<TEntity, TKey> spec, bool withTracking = false)
         {
             var query = SpecificationEvaluator<TEntity, TKey>.GetQuery(_dbSet.AsQueryable(), spec);
             return await query.ToListAsync();
         }
                                  
-        public async Task<TEntity?> GetByIdWithSpecAsync(ISpecifications<TEntity, TKey> spec)
+        public async Task<TEntity?> GetByIdWithSpecAsync(int id,ISpecifications<TEntity, TKey> spec, bool withTracking = false)
         {
             var query = SpecificationEvaluator<TEntity, TKey>.GetQuery(_dbSet.AsQueryable(), spec);
             return await query.FirstOrDefaultAsync();

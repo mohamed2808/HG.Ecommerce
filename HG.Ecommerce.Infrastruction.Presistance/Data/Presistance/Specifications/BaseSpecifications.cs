@@ -14,9 +14,17 @@ namespace HG.Ecommerce.Infrastruction.Presistance.Data.Presistance.Specification
         public Expression<Func<TEntity, bool>> Criteria { get; set; } = null!;
 
         public List<Expression<Func<TEntity, object>>> Includes { get; set; } = new();
+        public BaseSpecifications()
+        {
+            
+        }
         public BaseSpecifications(int id)
         {
             Criteria = entity => entity.Id.Equals(id);
+        }
+        private protected virtual void AddIncludes()
+        {
+
         }
     }
 }
