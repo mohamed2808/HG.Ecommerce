@@ -9,14 +9,12 @@ namespace LinkDev.Talabat.APIs.Controller.Controllers.Products
     public class ProductsController(IServicesManager _serviceManager) : BaseAPIController
     {
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _serviceManager.ProductService.GetAllProductsAsync();
             return Ok(products);
         }
         [HttpGet("{id:int}")]
-        [Authorize]
         public async Task<IActionResult> GetProductById(int id)
         {
             var product = await _serviceManager.ProductService.GetProductByIdAsync(id);
