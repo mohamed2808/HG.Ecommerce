@@ -7,6 +7,8 @@ namespace HG.Ecommerce.Core.Contracts
         Task<TEntity?> GetByIdAsync(TKey id);
         Task<List<TEntity>> GetAllWithSpecAsync(ISpecifications<TEntity, TKey> spec,bool withTracking = false);
         Task<TEntity?> GetByIdWithSpecAsync(int id,ISpecifications<TEntity, TKey> spec,bool withTracking = false);
+        Task<IEnumerable<TEntity>> GetPagedAsync(int pageIndex, int pageSize, string? includeProperties = null);
+        Task<int> CountAsync();
         Task AddAsync(TEntity entity);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TKey id);

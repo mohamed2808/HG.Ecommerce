@@ -34,6 +34,26 @@ namespace HG.Ecommerce.Infrastruction.Presistance.Data.Presistance.Generic_Repos
         => withTracking
             ? await _context.Set<TEntity>().ToListAsync()
             : await _context.Set<TEntity>().AsNoTracking().ToListAsync();
+        public async Task<IEnumerable<TEntity>> GetPagedAsync(int pageIndex, int pageSize,string? includeProperties = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return await query
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _dbSet.CountAsync();
+        }
 
         public Task<TEntity?> GetByIdAsync(TKey id)
       => _context.Set<TEntity>().FirstOrDefaultAsync(e => e.Id.Equals(id));

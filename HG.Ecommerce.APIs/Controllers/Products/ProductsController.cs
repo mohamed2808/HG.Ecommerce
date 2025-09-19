@@ -28,6 +28,13 @@ namespace LinkDev.Talabat.APIs.Controller.Controllers.Products
             var categories = await _serviceManager.ProductService.GetCategoriesAsync();
             return Ok(categories);
         }
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetProductsPaged([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+        {
+            var result = await _serviceManager.ProductService.GetProductsPagedAsync(pageIndex, pageSize);
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productDto)
         {

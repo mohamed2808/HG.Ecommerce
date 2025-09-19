@@ -1,6 +1,7 @@
 ﻿using HG.Ecommerce.Application.Abstraction.Contracts;
 using HG.Ecommerce.Application.Abstraction.Exceptions;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.CategoryDtos;
+using HG.Ecommerce.Application.Abstraction.Models.Dtos.Pagination;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.ProductDtos;
 using HG.Ecommerce.Core.Contracts;
 using HG.Ecommerce.Core.Entites;
@@ -55,6 +56,27 @@ namespace HG.Ecommerce.Application.Services
             var categories = await _unitOfWork.GetRepository<Category, int>().GetAllAsync();
             var categoriesToReturn = categories.Adapt<IEnumerable<CategoryDto>>();
             return categoriesToReturn;
+        }
+        public async Task<PaginationResult<ProductToReturnDto>> GetProductsPagedAsync(int pageIndex, int pageSize)
+        {
+            var repo = _unitOfWork.GetRepository<Product, int>();
+
+            var totalCount = await repo.CountAsync();
+
+            var products = await repo.GetPagedAsync(
+                pageIndex, pageSize,
+                includeProperties: "Category"
+            );
+
+            var data = products.Adapt<IEnumerable<ProductToReturnDto>>();
+
+            return new PaginationResult<ProductToReturnDto>
+            {
+                Data = data,
+                TotalCount = totalCount,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
         }
 
         public Task<int> CreateProductAsync(CreateProductDto productDto)
