@@ -2,6 +2,7 @@
 using HG.Ecommerce.Application.Abstraction.Contracts;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.ProductDtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 namespace LinkDev.Talabat.APIs.Controller.Controllers.Products
 {
@@ -44,6 +45,21 @@ namespace LinkDev.Talabat.APIs.Controller.Controllers.Products
         {
             await _serviceManager.ProductService.DeleteProductAsync(id);
             return NoContent();
+        }
+
+        [HttpPost("{productId}/uploadImage")]
+        public async Task<IActionResult> UploadProductImage(int productId, IFormFile file)
+        {
+            var result = await _serviceManager.ProductService.UploadProductImage(productId, file);
+            return Ok(result);
+        }
+        [HttpGet("image")]
+        public async Task<IActionResult> GetProductImage(int productId)
+        {
+            var image = await _serviceManager.ProductService.GetProductImage(productId);
+            if (image == null)
+                return NotFound();
+            return Ok(image);
         }
     }
 }

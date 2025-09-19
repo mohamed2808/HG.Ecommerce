@@ -1,5 +1,6 @@
 ﻿using HG.Ecommerce.Application.Abstraction.Models.Dtos.CategoryDtos;
 using HG.Ecommerce.Application.Abstraction.Models.Dtos.ProductDtos;
+using Microsoft.AspNetCore.Http;
 namespace HG.Ecommerce.Application.Abstraction.Contracts
 {
     public interface IProductService
@@ -10,5 +11,8 @@ namespace HG.Ecommerce.Application.Abstraction.Contracts
         Task<int> CreateProductAsync(CreateProductDto productDto);
         Task UpdateProductAsynce(UpdateProductDto productDto);
         Task DeleteProductAsync(int id);
+        Task<string> UploadProductImage(int productId, IFormFile file);
+        Task<string> GetProductImage(int productId);
+
     }
 }

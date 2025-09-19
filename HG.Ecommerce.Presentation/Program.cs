@@ -40,7 +40,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseStaticFiles();
 app.MapControllers();
 app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 app.Run();
