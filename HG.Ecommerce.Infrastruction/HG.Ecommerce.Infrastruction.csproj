@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HG.Ecommerce.APIs\HG.Ecommerce.APIs.csproj" />
+    <ProjectReference Include="..\HG.Ecommerce.Core\HG.Ecommerce.Core.csproj" />
+  </ItemGroup>
+
+</Project>
