@@ -14,7 +14,6 @@ namespace HG.Ecommerce.Application.Abstraction.Contracts
         Task UpdateProductAsynce(UpdateProductDto productDto);
         Task DeleteProductAsync(int id);
         Task<string> UploadProductImage(int productId, IFormFile file);
-        Task<string> GetProductImage(int productId);
 
     }
 }

@@ -143,13 +143,5 @@ namespace HG.Ecommerce.Application.Services
 
             return fileUrl;
         }
-        public Task<string> GetProductImage(int productId)
-        {
-            var product = _unitOfWork.GetRepository<Product, int>().GetByIdAsync(productId);
-            if (product == null)
-                throw new NotFoundException("Product not found.");
-            return Task.FromResult(product.Result!.ImagePath)!;
-        }
-
     }
 }

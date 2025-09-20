@@ -58,13 +58,5 @@ namespace LinkDev.Talabat.APIs.Controller.Controllers.Products
             var result = await _serviceManager.ProductService.UploadProductImage(productId, file);
             return Ok(result);
         }
-        [HttpGet("image")]
-        public async Task<IActionResult> GetProductImage(int productId)
-        {
-            var image = await _serviceManager.ProductService.GetProductImage(productId);
-            if (image == null)
-                return NotFound();
-            return Ok(image);
-        }
     }
 }

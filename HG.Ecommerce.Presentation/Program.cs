@@ -30,10 +30,30 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        b => b.WithOrigins("http://localhost:4200", "https://hgecommerce.runasp.net")
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
+
 
 
 var app = builder.Build();
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Append("Content-Security-Policy",
+        "default-src 'self'; " +
+        "script-src 'self'; " +
+        "style-src 'self' 'unsafe-inline'; " +
+        "img-src 'self' data:; " +
+        "connect-src 'self' http://localhost:4200 https://hgecommerce.runasp.net; " +
+        "frame-ancestors 'self';");
 
+    await next();
+});
+app.UseCors("AllowFrontend");
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
