@@ -33,7 +33,7 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        b => b.WithOrigins("http://localhost:4200", "https://hgecommerce.runasp.net")
+        b => b.WithOrigins("http://localhost:4200", "https://hgecommerce.runasp.net", "https://hg-ecommerce-angular-5s1d.vercel.app")
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
